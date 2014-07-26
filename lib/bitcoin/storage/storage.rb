@@ -462,7 +462,7 @@ module Bitcoin::Storage
       # connect to database
       def connect
         Sequel.extension(:core_extensions, :sequel_3_dataset_methods)
-        @db = Sequel.connect(@config[:db].sub("~", ENV["HOME"]))
+        @db = Sequel.connect(@config[:db].sub("~", ENV["HOME"]), :logger => Logger.new('db.log'))
         @db.extend_datasets(Sequel::Sequel3DatasetMethods)
         sqlite_pragmas; migrate; check_metadata
         log.info { "opened #{backend_name} store #{@db.uri}" }
