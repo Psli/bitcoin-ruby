@@ -6,6 +6,8 @@
 #
 # The most stable backend is Backends::SequelStore, which uses sequel and can use all
 # kinds of SQL database backends.
+require 'logger'
+
 module Bitcoin::Storage
 
   autoload :Models, 'bitcoin/storage/models'
